@@ -47,9 +47,9 @@ class _WeatherViewState extends State<WeatherView> {
       body: Center(
         child: BlocConsumer<WeatherCubit, WeatherState>(
           listener: (context, state) {
-            if (state.status.isSuccess) {
-              context.read<ThemeCubit>().updateTheme(state.weather);
-            }
+            // if (state.status.isSuccess) {
+            //   context.read<ThemeCubit>().updateTheme(state.weather);
+            // }
           },
           builder: (context, state) {
             switch (state.status) {
@@ -60,7 +60,7 @@ class _WeatherViewState extends State<WeatherView> {
               case WeatherStatus.success:
                 return WeatherPopulated(
                   weather: state.weather,
-                  units: state.temperatureUnits,
+                  units: state.degreeUnits,
                   onRefresh: () {
                     return context.read<WeatherCubit>().refreshWeather();
                   },

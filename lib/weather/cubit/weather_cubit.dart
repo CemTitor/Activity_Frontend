@@ -25,16 +25,17 @@ class WeatherCubit extends HydratedCubit<WeatherState> {
       final weather = Weather.fromRepository(
         await _weatherRepository.getWeather(city),
       );
-      final units = state.temperatureUnits;
-      final value = units.isFahrenheit
-          ? weather.degree.value.toFahrenheit()
-          : weather.degree.value;
+      final units = state.degreeUnits;
+      // final value = units.isFahrenheit
+      //     ? weather.degree.value.toFahrenheit()
+      //     : weather.degree.value;
 
       emit(
         state.copyWith(
           status: WeatherStatus.success,
-          temperatureUnits: units,
-          weather: weather.copyWith(temperature: Degree(value: value)),
+          degreeUnits: units,
+          weather: weather.copyWith(),
+          // weather: weather.copyWith(degree: Degree(value: value)),
         ),
       );
     } on Exception {
@@ -46,19 +47,19 @@ class WeatherCubit extends HydratedCubit<WeatherState> {
     if (!state.status.isSuccess) return;
     if (state.weather == Weather.empty) return;
     try {
-      final weather = Weather.fromRepository(
-        await _weatherRepository.getWeather(state.weather.location),
-      );
-      final units = state.temperatureUnits;
-      final value = units.isFahrenheit
-          ? weather.degree.value.toFahrenheit()
-          : weather.degree.value;
+      // final weather = Weather.fromRepository(
+      //   await _weatherRepository.getWeather(state.weather.location),
+      // );
+      final units = state.degreeUnits;
+      // final value = units.isFahrenheit
+      //     ? weather.degree.value.toFahrenheit()
+      //     : weather.degree.value;
 
       emit(
         state.copyWith(
           status: WeatherStatus.success,
-          temperatureUnits: units,
-          weather: weather.copyWith(temperature: Degree(value: value)),
+          degreeUnits: units,
+          // weather: weather.copyWith(degree: Degree(value: value)),
         ),
       );
     } on Exception {
@@ -67,25 +68,25 @@ class WeatherCubit extends HydratedCubit<WeatherState> {
   }
 
   void toggleUnits() {
-    final units = state.temperatureUnits.isFahrenheit
-        ? TemperatureUnits.celsius
-        : TemperatureUnits.fahrenheit;
+    final units = state.degreeUnits.isFahrenheit
+        ? DegreeUnits.celsius
+        : DegreeUnits.fahrenheit;
 
     if (!state.status.isSuccess) {
-      emit(state.copyWith(temperatureUnits: units));
+      emit(state.copyWith(degreeUnits: units));
       return;
     }
 
     final weather = state.weather;
     if (weather != Weather.empty) {
-      final temperature = weather.degree;
-      final value = units.isCelsius
-          ? temperature.value.toCelsius()
-          : temperature.value.toFahrenheit();
+      // final temperature = weather.degree;
+      // final value = units.isCelsius
+      //     ? temperature.value.toCelsius()
+      //     : temperature.value.toFahrenheit();
       emit(
         state.copyWith(
-          temperatureUnits: units,
-          weather: weather.copyWith(temperature: Degree(value: value)),
+          degreeUnits: units,
+          // weather: weather.copyWith(degree: Degree(value: value)),
         ),
       );
     }

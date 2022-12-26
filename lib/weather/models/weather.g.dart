@@ -6,50 +6,36 @@ part of 'weather.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Degree _$TemperatureFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'Temperature',
-      json,
-      ($checkedConvert) {
-        final val = Degree(
-          value: $checkedConvert('value', (v) => (v as num).toDouble()),
-        );
-        return val;
-      },
-    );
-
-Map<String, dynamic> _$TemperatureToJson(Degree instance) => <String, dynamic>{
-      'value': instance.value,
-    };
-
-Weather _$WeatherFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'Weather',
-      json,
-      ($checkedConvert) {
-        final val = Weather(
-          condition: $checkedConvert(
-              'condition', (v) => $enumDecode(_$WeatherConditionEnumMap, v)),
-          lastUpdated: $checkedConvert(
-              'last_updated', (v) => DateTime.parse(v as String)),
-          location: $checkedConvert('location', (v) => v as String),
-          degree: $checkedConvert(
-              'temperature', (v) => Degree.fromJson(v as Map<String, dynamic>)),
-        );
-        return val;
-      },
-      fieldKeyMap: const {'lastUpdated': 'last_updated'},
+Weather _$WeatherFromJson(Map<String, dynamic> json) => Weather(
+      lastUpdated: DateTime.parse(json['lastUpdated'] as String),
+      date: json['date'] as String,
+      day: json['day'] as String,
+      icon: json['icon'] as String,
+      description: json['description'] as String,
+      status: json['status'] as String,
+      min: json['min'] as String,
+      max: json['max'] as String,
+      night: json['night'] as String,
+      humidity: json['humidity'] as String,
     );
 
 Map<String, dynamic> _$WeatherToJson(Weather instance) => <String, dynamic>{
-      'condition': _$WeatherConditionEnumMap[instance.condition]!,
-      'last_updated': instance.lastUpdated.toIso8601String(),
-      'location': instance.location,
-      'temperature': instance.degree.toJson(),
+      'lastUpdated': instance.lastUpdated.toIso8601String(),
+      'date': instance.date,
+      'day': instance.day,
+      'icon': instance.icon,
+      'description': instance.description,
+      'status': instance.status,
+      'min': instance.min,
+      'max': instance.max,
+      'night': instance.night,
+      'humidity': instance.humidity,
     };
 
-const _$WeatherConditionEnumMap = {
-  WeatherCondition.clear: 'clear',
-  WeatherCondition.rainy: 'rainy',
-  WeatherCondition.cloudy: 'cloudy',
-  WeatherCondition.snowy: 'snowy',
-  WeatherCondition.unknown: 'unknown',
-};
+Degree _$DegreeFromJson(Map<String, dynamic> json) => Degree(
+      value: (json['value'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$DegreeToJson(Degree instance) => <String, dynamic>{
+      'value': instance.value,
+    };

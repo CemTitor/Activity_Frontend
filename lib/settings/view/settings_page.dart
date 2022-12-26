@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
         children: <Widget>[
           BlocBuilder<WeatherCubit, WeatherState>(
             buildWhen: (previous, current) =>
-                previous.temperatureUnits != current.temperatureUnits,
+                previous.degreeUnits != current.degreeUnits,
             builder: (context, state) {
               return ListTile(
                 title: const Text('Temperature Units'),
@@ -32,7 +32,7 @@ class SettingsPage extends StatelessWidget {
                   'Use metric measurements for temperature units.',
                 ),
                 trailing: Switch(
-                  value: state.temperatureUnits.isCelsius,
+                  value: state.degreeUnits.isCelsius,
                   onChanged: (_) => context.read<WeatherCubit>().toggleUnits(),
                 ),
               );

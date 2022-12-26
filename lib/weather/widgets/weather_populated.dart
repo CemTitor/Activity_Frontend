@@ -10,7 +10,7 @@ class WeatherPopulated extends StatelessWidget {
   });
 
   final Weather weather;
-  final TemperatureUnits units;
+  final DegreeUnits units;
 
   ///ValueGetter = Talep üzerine bir değer bildirecek olan callbackler için bir signature.
   final ValueGetter<Future<void>> onRefresh;
@@ -30,19 +30,13 @@ class WeatherPopulated extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 48),
-                  _WeatherIcon(condition: weather.condition),
-                  Text(
-                    weather.location,
-                    style: theme.textTheme.headline2?.copyWith(
-                      fontWeight: FontWeight.w200,
-                    ),
-                  ),
-                  Text(
-                    weather.formattedTemperature(units),
-                    style: theme.textTheme.headline3?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // _WeatherIcon(condition: weather.condition),
+                  // Text(
+                  //   weather.formattedTemperature(units),
+                  //   style: theme.textTheme.headline3?.copyWith(
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   Text(
                     '''Last Updated at ${TimeOfDay.fromDateTime(weather.lastUpdated).format(context)}''',
                   ),
@@ -129,8 +123,8 @@ extension on Color {
   }
 }
 
-extension on Weather {
-  String formattedTemperature(TemperatureUnits units) {
-    return '''${degree.value.toStringAsPrecision(2)}°${units.isCelsius ? 'C' : 'F'}''';
-  }
-}
+// extension on Weather {
+//   String formattedTemperature(DegreeUnits units) {
+//     return '''${degree.value.toStringAsPrecision(2)}°${units.isCelsius ? 'C' : 'F'}''';
+//   }
+// }
