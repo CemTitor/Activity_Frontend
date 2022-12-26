@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_bloc/weather/weather.dart';
+import 'package:weather_frontend/weather/weather.dart';
 
 class WeatherPopulated extends StatelessWidget {
   const WeatherPopulated({
@@ -131,6 +131,6 @@ extension on Color {
 
 extension on Weather {
   String formattedTemperature(TemperatureUnits units) {
-    return '''${temperature.value.toStringAsPrecision(2)}°${units.isCelsius ? 'C' : 'F'}''';
+    return '''${degree.value.toStringAsPrecision(2)}°${units.isCelsius ? 'C' : 'F'}''';
   }
 }
