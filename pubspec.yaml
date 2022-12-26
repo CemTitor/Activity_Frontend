@@ -17,6 +17,8 @@ dependencies:
   path_provider: ^2.0.8
   weather_repository:
     path: packages/weather_repository
+  collectapi_weather:
+    path: packages/collectapi_weather
 
 dev_dependencies:
   bloc_test: ^9.1.0

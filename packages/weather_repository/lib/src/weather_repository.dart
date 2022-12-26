@@ -5,7 +5,7 @@
 
 import 'dart:async';
 
-import 'package:collectapi_weather/collectapi_weather.dart' hide Weather;
+import 'package:collectapi_weather/collectapi_weather.dart';
 import 'package:weather_repository/weather_repository.dart';
 
 class WeatherRepository {
@@ -15,7 +15,11 @@ class WeatherRepository {
   final CollectApiClient _weatherApiClient;
 
   Future<Weather> getWeather(String city) async {
+    print('önce');
     final weather = await _weatherApiClient.getWeather(city);
+    print('sonra');
+    print(weather);
+
     return Weather(
       date: weather.date,
       day: weather.day,
@@ -29,6 +33,27 @@ class WeatherRepository {
       humidity: weather.humidity,
       // condition: weather.weatherCode.toInt().toCondition,
     );
+  }
+
+  Future<List<Weather>> getWeatherList(String cityName) async {
+    final weatherList = await _weatherApiClient.getWeatherList(cityName);
+    return weatherList
+        .map(
+          (weather) => Weather(
+            date: weather.date,
+            day: weather.day,
+            icon: weather.icon,
+            description: weather.description,
+            status: weather.status,
+            // degree: weather.degree,
+            min: weather.min,
+            max: weather.max,
+            night: weather.night,
+            humidity: weather.humidity,
+            // condition: weather.weatherCode.toInt().toCondition,
+          ),
+        )
+        .toList();
   }
 }
 

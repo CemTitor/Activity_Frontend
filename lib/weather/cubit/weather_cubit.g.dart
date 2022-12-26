@@ -9,9 +9,10 @@ part of 'weather_cubit.dart';
 WeatherState _$WeatherStateFromJson(Map<String, dynamic> json) => WeatherState(
       status: $enumDecodeNullable(_$WeatherStatusEnumMap, json['status']) ??
           WeatherStatus.initial,
-      degreeUnits:
-          $enumDecodeNullable(_$DegreeUnitsEnumMap, json['degreeUnits']) ??
-              DegreeUnits.celsius,
+      weatherList: (json['weatherList'] as List<dynamic>?)
+              ?.map((e) => Weather.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Weather>[],
       weather: json['weather'] == null
           ? null
           : Weather.fromJson(json['weather'] as Map<String, dynamic>),
@@ -21,7 +22,7 @@ Map<String, dynamic> _$WeatherStateToJson(WeatherState instance) =>
     <String, dynamic>{
       'status': _$WeatherStatusEnumMap[instance.status]!,
       'weather': instance.weather,
-      'degreeUnits': _$DegreeUnitsEnumMap[instance.degreeUnits]!,
+      'weatherList': instance.weatherList,
     };
 
 const _$WeatherStatusEnumMap = {
@@ -29,9 +30,4 @@ const _$WeatherStatusEnumMap = {
   WeatherStatus.loading: 'loading',
   WeatherStatus.success: 'success',
   WeatherStatus.failure: 'failure',
-};
-
-const _$DegreeUnitsEnumMap = {
-  DegreeUnits.fahrenheit: 'fahrenheit',
-  DegreeUnits.celsius: 'celsius',
 };

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:weather_frontend/weather/weather.dart';
+import 'package:collectapi_weather/collectapi_weather.dart';
 
 class WeatherPopulated extends StatelessWidget {
   const WeatherPopulated({
     super.key,
     required this.weather,
-    required this.units,
+    // required this.units,
     required this.onRefresh,
   });
 
   final Weather weather;
-  final DegreeUnits units;
+  // final DegreeUnits units;
 
   ///ValueGetter = Talep üzerine bir değer bildirecek olan callbackler için bir signature.
   final ValueGetter<Future<void>> onRefresh;
@@ -30,6 +31,15 @@ class WeatherPopulated extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 48),
+                  Text(
+                    weather.day,
+                    style: theme.textTheme.headline4,
+                  ),
+                  const SizedBox(height: 48),
+                  Text(
+                    '${weather.description}',
+                    style: theme.textTheme.headline2,
+                  ),
                   // _WeatherIcon(condition: weather.condition),
                   // Text(
                   //   weather.formattedTemperature(units),
@@ -37,9 +47,9 @@ class WeatherPopulated extends StatelessWidget {
                   //     fontWeight: FontWeight.bold,
                   //   ),
                   // ),
-                  Text(
-                    '''Last Updated at ${TimeOfDay.fromDateTime(weather.lastUpdated).format(context)}''',
-                  ),
+                  // Text(
+                  //   '''Last Updated at ${TimeOfDay.fromDateTime(weather.lastUpdated).format(context)}''',
+                  // ),
                 ],
               ),
             ),

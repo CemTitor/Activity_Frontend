@@ -6,6 +6,8 @@ import 'package:weather_frontend/theme/theme.dart';
 import 'package:weather_frontend/weather/weather.dart';
 import 'package:weather_repository/weather_repository.dart';
 
+import '../widgets/weather_list_populated.dart';
+
 class WeatherPage extends StatelessWidget {
   const WeatherPage({super.key});
 
@@ -47,9 +49,9 @@ class _WeatherViewState extends State<WeatherView> {
       body: Center(
         child: BlocConsumer<WeatherCubit, WeatherState>(
           listener: (context, state) {
-            // if (state.status.isSuccess) {
-            //   context.read<ThemeCubit>().updateTheme(state.weather);
-            // }
+            if (state.status.isSuccess) {
+              // context.read<ThemeCubit>().updateTheme(state.weather);
+            }
           },
           builder: (context, state) {
             switch (state.status) {
@@ -58,12 +60,16 @@ class _WeatherViewState extends State<WeatherView> {
               case WeatherStatus.loading:
                 return const WeatherLoading();
               case WeatherStatus.success:
-                return WeatherPopulated(
-                  weather: state.weather,
-                  units: state.degreeUnits,
-                  onRefresh: () {
-                    return context.read<WeatherCubit>().refreshWeather();
-                  },
+                // return WeatherPopulated(
+                //   weather: state.weather,
+                //   // units: state.degreeUnits,
+                //   onRefresh: () {
+                //     return context.read<WeatherCubit>().refreshWeather();
+                //   },
+                // );
+                return WeatherListPopulated(
+                  weatherList: state.weatherList,
+                  // units: state.degreeUnits,
                 );
               case WeatherStatus.failure:
                 return const WeatherError();
@@ -76,7 +82,8 @@ class _WeatherViewState extends State<WeatherView> {
         onPressed: () async {
           final city = await Navigator.of(context).push(SearchPage.route());
           if (!mounted) return;
-          await context.read<WeatherCubit>().fetchWeather(city);
+          // await context.read<WeatherCubit>().fetchWeather(city);
+          await context.read<WeatherCubit>().fetchWeatherList(city!);
         },
       ),
     );
