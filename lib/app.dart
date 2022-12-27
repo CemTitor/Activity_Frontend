@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_frontend/domain/weather_repository/src/weather_repository.dart';
 import 'package:weather_frontend/feature/theme/theme.dart';
 import 'package:weather_frontend/feature/weather/weather.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_repository/weather_repository.dart';
 
 ///Our app.dart widget will handle building the WeatherPage view we previously created and use BlocProvider to inject our ThemeCubit which handles theme data.
 class WeatherApp extends StatelessWidget {

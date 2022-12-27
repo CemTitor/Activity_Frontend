@@ -5,7 +5,7 @@
 
 import 'dart:async';
 
-import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';import 'package:weather_repository/weather_repository.dart';
+import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
 
 class WeatherRepository {
   WeatherRepository({CollectApiClient? weatherApiClient})
