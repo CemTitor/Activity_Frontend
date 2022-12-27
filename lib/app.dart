@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/theme/theme.dart';
-import 'package:weather_frontend/weather/weather.dart';
+import 'package:weather_frontend/feature/theme/theme.dart';
+import 'package:weather_frontend/feature/weather/weather.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_repository/weather_repository.dart';
 

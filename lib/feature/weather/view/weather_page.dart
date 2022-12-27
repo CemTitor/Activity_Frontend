@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/search/search.dart';
-import 'package:weather_frontend/settings/settings.dart';
-import 'package:weather_frontend/theme/theme.dart';
-import 'package:weather_frontend/weather/weather.dart';
+import 'package:weather_frontend/feature/search/search.dart';
+import 'package:weather_frontend/feature/settings/settings.dart';
+import 'package:weather_frontend/feature/theme/theme.dart';
+import 'package:weather_frontend/feature/weather/weather.dart';
 import 'package:weather_repository/weather_repository.dart';
 
 import '../widgets/weather_list_populated.dart';

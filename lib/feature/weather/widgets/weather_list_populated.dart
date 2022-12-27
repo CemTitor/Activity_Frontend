@@ -1,10 +1,7 @@
-import 'package:collectapi_weather/collectapi_weather.dart';
+import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
 import 'package:flutter/material.dart';
 
 import 'bottom_loader.dart';
-// import 'package:go_router/go_router.dart';
-// import 'package:watch_buddy/domain/movie_repository/movie_repository.dart';
-// import 'package:watch_buddy/feature/movie/movie.dart';
 
 class WeatherListPopulated extends StatelessWidget {
   const WeatherListPopulated({

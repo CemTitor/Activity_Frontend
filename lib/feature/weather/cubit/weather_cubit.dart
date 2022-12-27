@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:weather_frontend/weather/weather.dart';
+// import 'package:weather_frontend/weather/weather.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
 // import 'package:weather_repository/weather_repository.dart'
 //     show WeatherRepository;
-import 'package:collectapi_weather/collectapi_weather.dart';
+import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
 import 'package:weather_repository/weather_repository.dart' hide Weather;
 
 part 'weather_cubit.g.dart';
