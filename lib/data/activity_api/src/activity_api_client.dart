@@ -48,13 +48,10 @@ class ActivityApiClient {
 
   ///my method
   Future<List<Activity>> getActivityList() async {
-    final activityRequest = Uri.https(
-      'localhost',
+    final activityRequest = Uri.http(
+      localhost,
       '/Activity/GetAll',
     );
-
-    // final activityRequest =
-    //     Uri.https('https://jsonplaceholder.typicode.com', '/posts');
     print('activityRequest: $activityRequest');
     final activityResponse = await _httpClient.get(activityRequest);
     print('activityResponse: ${activityResponse.statusCode}');

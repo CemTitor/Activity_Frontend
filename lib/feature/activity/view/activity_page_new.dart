@@ -71,8 +71,10 @@ class _ActivityViewState extends State<ActivityView> {
                   case ActivityStatus.loading:
                     return const ActivityLoading();
                   case ActivityStatus.success:
-                    return ActivityListPopulated(
-                      activityList: state.activityList,
+                    return Expanded(
+                      child: ActivityListPopulated(
+                        activityList: state.activityList,
+                      ),
                     );
                   case ActivityStatus.failure:
                     return const ActivityError();

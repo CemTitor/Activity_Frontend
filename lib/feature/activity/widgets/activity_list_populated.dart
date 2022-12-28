@@ -15,21 +15,13 @@ class ActivityListPopulated extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ListView.builder(
-      scrollDirection: Axis.horizontal,
+      // scrollDirection: Axis.horizontal,
       itemBuilder: (BuildContext context, int movieIndex) {
         return movieIndex >= activityList.length
             ? const BottomLoader()
-            : Column(
-                children: [
-                  Text(
-                    '${activityList[movieIndex].city}',
-                    style: theme.textTheme.headline4,
-                  ),
-                  Text(
-                    '${activityList[movieIndex].venue}',
-                    style: theme.textTheme.headline2,
-                  ),
-                ],
+            : Text(
+                '${activityList[movieIndex].city}',
+                style: theme.textTheme.headline4,
               );
       },
       itemCount: activityList.length + 1,
