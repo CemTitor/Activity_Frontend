@@ -55,4 +55,14 @@ class Activity {
       venue: venue ?? this.venue,
     );
   }
+
+  static final empty = Activity(
+    id: '',
+    title: '',
+    date: '',
+    description: '',
+    category: '',
+    city: '',
+    venue: '',
+  );
 }
