@@ -13,13 +13,26 @@ class ActivityRepository {
 
   final ActivityApiClient _activityApiClient;
 
-  Future<Activity> getActivity() async {
-    final activity = await _activityApiClient.getActivity();
+  Future<List<Activity>> getActivityList() async {
+    final activityList = await _activityApiClient.getActivityList();
 
-    return Activity(
-      id: activity.id,
-      title: activity.title,
-      description: activity.description,
-    );
+    return activityList
+        .map((e) => Activity(
+              id: e.id,
+              title: e.title,
+              description: e.description,
+              category: e.category,
+              city: e.city,
+              venue: e.venue,
+            ))
+        .toList();
+  }
+
+  Future<void> addActivity(Activity activity) async {
+    final activityList = await _activityApiClient.postActivity(activity);
+  }
+
+  Future<void> removeActivity(int id) async {
+    final activity = await _activityApiClient.deleteActivity(id);
   }
 }

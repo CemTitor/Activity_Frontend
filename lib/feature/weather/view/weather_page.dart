@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
 import 'package:weather_frontend/domain/weather_repository/src/weather_repository.dart';
+import 'package:weather_frontend/feature/activity/cubit/activity_cubit.dart';
 import 'package:weather_frontend/feature/search/search.dart';
 import 'package:weather_frontend/feature/settings/settings.dart';
 import 'package:weather_frontend/feature/theme/theme.dart';
@@ -13,8 +15,17 @@ class WeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => WeatherCubit(context.read<WeatherRepository>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => WeatherCubit(
+            context.read<WeatherRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (_) => ActivityCubit(context.read<ActivityRepository>()),
+        ),
+      ],
       child: const WeatherView(),
     );
   }

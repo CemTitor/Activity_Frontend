@@ -13,9 +13,11 @@ extension ActivityStatusX on ActivityStatus {
 class ActivityState extends Equatable {
   final ActivityStatus status;
   final Activity activity;
+  final List<Activity> activityList;
 
   ActivityState({
     this.status = ActivityStatus.initial,
+    this.activityList = const <Activity>[],
     Activity? activity,
   }) : activity = activity ?? Activity.empty;
 
@@ -27,13 +29,15 @@ class ActivityState extends Equatable {
   ActivityState copyWith({
     ActivityStatus? status,
     Activity? activity,
+    List<Activity>? activityList,
   }) {
     return ActivityState(
       status: status ?? this.status,
       activity: activity ?? this.activity,
+      activityList: activityList ?? this.activityList,
     );
   }
 
   @override
-  List<Object?> get props => [status, activity];
+  List<Object?> get props => [status, activity, activityList];
 }

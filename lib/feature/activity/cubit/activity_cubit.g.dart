@@ -10,6 +10,10 @@ ActivityState _$ActivityStateFromJson(Map<String, dynamic> json) =>
     ActivityState(
       status: $enumDecodeNullable(_$ActivityStatusEnumMap, json['status']) ??
           ActivityStatus.initial,
+      activityList: (json['activityList'] as List<dynamic>?)
+              ?.map((e) => Activity.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Activity>[],
       activity: json['activity'] == null
           ? null
           : Activity.fromJson(json['activity'] as Map<String, dynamic>),
@@ -19,6 +23,7 @@ Map<String, dynamic> _$ActivityStateToJson(ActivityState instance) =>
     <String, dynamic>{
       'status': _$ActivityStatusEnumMap[instance.status]!,
       'activity': instance.activity,
+      'activityList': instance.activityList,
     };
 
 const _$ActivityStatusEnumMap = {

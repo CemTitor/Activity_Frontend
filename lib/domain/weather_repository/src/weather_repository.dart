@@ -14,10 +14,7 @@ class WeatherRepository {
   final CollectApiClient _weatherApiClient;
 
   Future<Weather> getWeather(String city) async {
-    print('önce');
     final weather = await _weatherApiClient.getWeather(city);
-    print('sonra');
-    print(weather);
 
     return Weather(
       date: weather.date,

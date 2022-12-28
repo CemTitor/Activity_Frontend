@@ -13,30 +13,67 @@ class ActivityCubit extends Cubit<ActivityState> {
 
   ActivityCubit(this._activityRepository) : super(ActivityState());
 
-  Future<void> fetchActivity() async {
-    // if (city == null || city.isEmpty) return;
-
+  Future<void> fetchActivityList() async {
     emit(state.copyWith(status: ActivityStatus.loading));
-
     try {
-      // final activity = Activity.fromRepository(
-      //   await _activityRepository.getActivity(),
-      // );
-
-      final activity = await _activityRepository.getActivity();
+      final activityList = await _activityRepository.getActivityList();
 
       emit(
         state.copyWith(
           status: ActivityStatus.success,
-          // degreeUnits: units,
-          activity: activity.copyWith(),
-          // weather: weather.copyWith(degree: Degree(value: value)),
+          activityList: activityList,
         ),
       );
     } on Exception {
       emit(state.copyWith(status: ActivityStatus.failure));
     }
   }
+  //
+  // Future<void> addActivity() async {
+  //   emit(state.copyWith(status: ActivityStatus.loading));
+  //   try {
+  //     final activityList = await _activityRepository.addActivity();
+  //
+  //     emit(
+  //       state.copyWith(
+  //         status: ActivityStatus.success,
+  //         activityList: activityList,
+  //       ),
+  //     );
+  //   } on Exception {
+  //     emit(state.copyWith(status: ActivityStatus.failure));
+  //   }
+  // }
+  //
+  // Future<void> removeActivity(int id) async {
+  //   emit(state.copyWith(status: ActivityStatus.loading));
+  //   try {
+  //     final activity = await _activityRepository.removeActivity(id);
+  //
+  //     emit(
+  //       state.copyWith(
+  //         status: ActivityStatus.success,
+  //     );
+  //   } on Exception {
+  //     emit(state.copyWith(status: ActivityStatus.failure));
+  //   }
+  // }
+  //
+  // Future<void> updateActivity() async {
+  //   emit(state.copyWith(status: ActivityStatus.loading));
+  //   try {
+  //     final activityList = await _activityRepository.updateActivity();
+  //
+  //     emit(
+  //       state.copyWith(
+  //         status: ActivityStatus.success,
+  //         activityList: activityList,
+  //       ),
+  //     );
+  //   } on Exception {
+  //     emit(state.copyWith(status: ActivityStatus.failure));
+  //   }
+  // }
 
   @override
   ActivityState fromJson(Map<String, dynamic> json) =>
