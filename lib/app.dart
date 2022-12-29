@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_frontend/domain/activity_repository/src/activity_repository.dart';
 import 'package:weather_frontend/domain/weather_repository/src/weather_repository.dart';
-import 'package:weather_frontend/feature/activity/view/activity_page_new.dart';
+import 'package:weather_frontend/feature/activity/view/activity_page.dart';
 import 'package:weather_frontend/feature/theme/theme.dart';
 import 'package:weather_frontend/feature/weather/weather.dart';
 import 'package:weather_frontend/feature/activity/activity.dart';

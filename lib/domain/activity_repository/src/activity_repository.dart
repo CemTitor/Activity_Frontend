@@ -29,10 +29,14 @@ class ActivityRepository {
   }
 
   Future<void> addActivity(Activity activity) async {
-    final activityList = await _activityApiClient.postActivity(activity);
+    await _activityApiClient.postActivity(activity);
   }
 
-  Future<void> removeActivity(int id) async {
+  Future<void> updateActivity(Activity activity) async {
+    await _activityApiClient.putActivity(activity);
+  }
+
+  Future<void> removeActivity(String id) async {
     final activity = await _activityApiClient.deleteActivity(id);
   }
 }

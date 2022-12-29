@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:weather_frontend/data/activity_api/activity_api.dart';
 
@@ -15,36 +14,6 @@ class ActivityApiClient {
   static const localhost = '10.0.2.2:7216';
 
   final http.Client _httpClient;
-
-  // Future<List<Activity>> getActivityList() async {
-  //   final activityRequest = Uri.https(
-  //     localhost,
-  //     '/Activity/GetAll',
-  //   );
-  //
-  //   final activityResponse = await _httpClient.get(
-  //     activityRequest,
-  //   );
-  //
-  //   if (activityResponse.statusCode != 200) {
-  //     throw ActivityRequestFailure();
-  //   }
-  //   final activityJson =
-  //       jsonDecode(activityResponse.body) as Map<String, dynamic>;
-  //
-  //   final results = activityJson['result'] as List;
-  //
-  //   if (!activityJson.containsKey('result') || results.isEmpty) {
-  //     throw ActivityNotFoundFailure();
-  //   }
-  //
-  //   final activityList = results
-  //       .map((activity) => Activity.fromJson(activity as Map<String, dynamic>))
-  //       .toList();
-  //
-  //   print(activityList);
-  //   return activityList;
-  // }
 
   ///my method
   Future<List<Activity>> getActivityList() async {
@@ -94,15 +63,22 @@ class ActivityApiClient {
   Future<Activity> postActivity(Activity activity) async {
     final activityRequest = Uri.http(
       localhost,
-      '/Activity/Post',
+      '/Activity/Add',
     );
-    print(activityRequest);
-    final activityResponse = await _httpClient.post(activityRequest,
-        body: jsonEncode(activity.toJson()));
+    final activityResponse = await _httpClient.post(
+      activityRequest,
+      body: jsonEncode(activity),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+    );
+    print('activityRequest: ${activityRequest}');
+    print('activityResponse: ${activityResponse.statusCode}');
+    print('activityResponse: ${activityResponse.body}');
+    print('activityResponse: ${activityResponse.headers}');
     if (activityResponse.statusCode != 200) {
       throw ActivityRequestFailure();
     }
-    print(activityResponse.body);
     final activityJson = jsonDecode(activityResponse.body);
     print(activityJson);
 
@@ -113,27 +89,27 @@ class ActivityApiClient {
   Future<Activity> putActivity(Activity activity) async {
     final activityRequest = Uri.http(
       localhost,
-      '/Activity/Put',
+      '/Activity/Update',
     );
-    print(activityRequest);
     final activityResponse = await _httpClient.put(activityRequest,
         body: jsonEncode(activity.toJson()));
+    print('activityRequest: ${activityRequest}');
+    print('activityResponse: ${activityResponse.statusCode}');
+    print('activityResponse: ${activityResponse.body}');
+    print('activityResponse: ${activityResponse.headers}');
     if (activityResponse.statusCode != 200) {
       throw ActivityRequestFailure();
     }
-    print(activityResponse.body);
     final activityJson = jsonDecode(activityResponse.body);
-    print(activityJson);
 
     return Activity.fromJson(activityJson);
   }
 
   ///Delete Activity
-  Future<Activity> deleteActivity(int id) async {
+  Future<Activity> deleteActivity(String id) async {
     final activityRequest = Uri.http(
       localhost,
-      '/Activity/Delete',
-      {'id': id.toString()},
+      '/Activity/Delete/$id',
     );
     print(activityRequest);
     final activityResponse = await _httpClient.delete(activityRequest);
