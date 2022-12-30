@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/data/activity_api/src/models/activity.dart';
-import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
-import 'package:weather_frontend/feature/update_activity/update_activity.dart';
-import 'package:weather_frontend/feature/update_activity/widgets/activity_text_field.dart';
+import 'package:activity_frontend/data/activity_api/src/models/activity.dart';
+import 'package:activity_frontend/domain/activity_repository/activity_repository.dart';
+import 'package:activity_frontend/feature/update_activity/update_activity.dart';
+import 'package:activity_frontend/feature/update_activity/widgets/activity_text_field.dart';
 
 class UpdateActivityPage extends StatelessWidget {
   const UpdateActivityPage({super.key});

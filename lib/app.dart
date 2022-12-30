@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
-import 'package:weather_frontend/domain/weather_repository/weather_repository.dart';
-import 'package:weather_frontend/feature/activity/view/activity_page.dart';
-import 'package:weather_frontend/feature/activity/activity.dart';
+import 'package:activity_frontend/domain/activity_repository/activity_repository.dart';
+import 'package:activity_frontend/domain/weather_repository/weather_repository.dart';
+import 'package:activity_frontend/feature/activity/view/activity_page.dart';
+import 'package:activity_frontend/feature/activity/activity.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ActivityApp extends StatelessWidget {

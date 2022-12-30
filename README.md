@@ -1,4 +1,4 @@
-# weather_frontend
+# activity_frontend
 
 A new Flutter project.
 

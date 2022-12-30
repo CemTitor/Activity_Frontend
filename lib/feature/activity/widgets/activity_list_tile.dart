@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_frontend/data/activity_api/src/models/activity.dart';
+import 'package:activity_frontend/data/activity_api/src/models/activity.dart';
 
 ///ListTile for each activity item.
 class ActivityListTile extends StatelessWidget {

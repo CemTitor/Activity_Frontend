@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/domain/weather_repository/weather_repository.dart';
-import 'package:weather_frontend/feature/search/search.dart';
-import 'package:weather_frontend/feature/weather/weather.dart';
+import 'package:activity_frontend/domain/weather_repository/weather_repository.dart';
+import 'package:activity_frontend/feature/search/search.dart';
+import 'package:activity_frontend/feature/weather/weather.dart';
 
 class WeatherPage extends StatelessWidget {
   const WeatherPage({super.key});

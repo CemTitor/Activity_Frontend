@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/feature/update_activity/bloc/update_activity_bloc.dart';
+import 'package:activity_frontend/feature/update_activity/bloc/update_activity_bloc.dart';
 
 class ActivityTextField extends StatelessWidget {
   const ActivityTextField({

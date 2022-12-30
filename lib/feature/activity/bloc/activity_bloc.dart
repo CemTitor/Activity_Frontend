@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weather_frontend/data/activity_api/activity_api.dart';
-import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
+import 'package:activity_frontend/data/activity_api/activity_api.dart';
+import 'package:activity_frontend/domain/activity_repository/activity_repository.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';

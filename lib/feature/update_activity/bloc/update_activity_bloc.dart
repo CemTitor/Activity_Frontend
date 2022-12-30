@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:weather_frontend/data/activity_api/src/models/activity.dart';
-import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
+import 'package:activity_frontend/data/activity_api/src/models/activity.dart';
+import 'package:activity_frontend/domain/activity_repository/activity_repository.dart';
 
 part 'update_activity_event.dart';
 part 'update_activity_state.dart';

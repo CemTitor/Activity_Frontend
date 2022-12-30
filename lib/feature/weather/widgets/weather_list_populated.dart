@@ -1,6 +1,5 @@
-import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
+import 'package:activity_frontend/data/weather_api/collectapi_weather.dart';
 import 'package:flutter/material.dart';
-
 
 class WeatherListPopulated extends StatelessWidget {
   const WeatherListPopulated({

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:rxdart/rxdart.dart';
-import 'package:weather_frontend/data/activity_api/activity_api.dart';
+import 'package:activity_frontend/data/activity_api/activity_api.dart';
 
 class ActivityRequestFailure implements Exception {}
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
+import 'package:activity_frontend/data/weather_api/collectapi_weather.dart';
 
 /// Exception thrown when locationSearch fails.
 class WeatherRequestFailure implements Exception {}

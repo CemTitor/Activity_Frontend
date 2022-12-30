@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:weather_frontend/data/activity_api/activity_api.dart';
+import 'package:activity_frontend/data/activity_api/activity_api.dart';
 
 ///ActivityRepository'nin amacı "ne"yi "nasıl"dan AYIRMAK - başka bir deyişle, Activity'i NASIL alacağımızı bilmemiz gerekir, ancak bu verilerin nereden geldiğini umursamayız.
 

@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
-import 'package:weather_frontend/domain/weather_repository/weather_repository.dart';
+import 'package:activity_frontend/data/weather_api/collectapi_weather.dart';
+import 'package:activity_frontend/domain/weather_repository/weather_repository.dart';
 
 part 'weather_cubit.g.dart';
 part 'weather_state.dart';
