@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:weather_frontend/weather/weather.dart';
 import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
 
 class WeatherPopulated extends StatelessWidget {
@@ -31,16 +30,6 @@ class WeatherPopulated extends StatelessWidget {
                   '${weather.description}',
                   style: theme.textTheme.headline2,
                 ),
-                // _WeatherIcon(condition: weather.condition),
-                // Text(
-                //   weather.formattedTemperature(units),
-                //   style: theme.textTheme.headline3?.copyWith(
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-                // Text(
-                //   '''Last Updated at ${TimeOfDay.fromDateTime(weather.lastUpdated).format(context)}''',
-                // ),
               ],
             ),
           ),

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:weather_frontend/data/activity_api/src/models/activity.dart';
@@ -21,11 +19,18 @@ class UpdateActivityBloc
             initialActivity: initialActivity,
             title: initialActivity?.title ?? '',
             description: initialActivity?.description ?? '',
+            category: initialActivity?.category ?? '',
+            city: initialActivity?.city ?? '',
+            venue: initialActivity?.venue ?? '',
+            id: initialActivity?.id ?? '',
           ),
         ) {
     on<UpdateActivityTitleChanged>(_onTitleChanged);
     on<UpdateActivityDescriptionChanged>(_onDescriptionChanged);
+    on<UpdateActivityCategoryChanged>(_onCategoryChanged);
     on<UpdateActivitySubmitted>(_onActivitySubmitted);
+    on<UpdateActivityCityChanged>(_onCityChanged);
+    on<UpdateActivityVenueChanged>(_onVenueChanged);
   }
 
   final ActivityRepository _activityRepository;
@@ -44,16 +49,36 @@ class UpdateActivityBloc
     emit(state.copyWith(description: event.description));
   }
 
+  void _onCategoryChanged(
+    UpdateActivityCategoryChanged event,
+    Emitter<UpdateActivityState> emit,
+  ) {
+    emit(state.copyWith(category: event.category));
+  }
+
+  void _onCityChanged(
+    UpdateActivityCityChanged event,
+    Emitter<UpdateActivityState> emit,
+  ) {
+    emit(state.copyWith(city: event.city));
+  }
+
+  void _onVenueChanged(
+    UpdateActivityVenueChanged event,
+    Emitter<UpdateActivityState> emit,
+  ) {
+    emit(state.copyWith(venue: event.venue));
+  }
+
   Future<void> _onActivitySubmitted(
     UpdateActivitySubmitted event,
     Emitter<UpdateActivityState> emit,
   ) async {
     emit(state.copyWith(status: UpdateActivityStatus.loading));
     final activity = (state.initialActivity ?? Activity(title: '')).copyWith(
-      id: Random().nextInt(1000).toString(),
+      id: state.id,
       title: state.title,
       description: state.description,
-      date: "2022-12-29T13:52:00.593Z",
       category: state.category,
       city: state.city,
       venue: state.venue,
@@ -64,9 +89,11 @@ class UpdateActivityBloc
           ? await _activityRepository.addActivity(activity)
           : await _activityRepository.updateActivity(activity);
 
-      // await _activityRepository.addActivity(activity);
-
-      emit(state.copyWith(status: UpdateActivityStatus.success));
+      emit(
+        state.copyWith(
+          status: UpdateActivityStatus.success,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(status: UpdateActivityStatus.failure));
     }

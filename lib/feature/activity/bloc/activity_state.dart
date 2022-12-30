@@ -1,4 +1,4 @@
-part of 'activity_cubit.dart';
+part of 'activity_bloc.dart';
 
 enum ActivityStatus { initial, loading, success, failure }
 
@@ -26,22 +26,25 @@ class ActivityState extends Equatable {
     this.lastDeletedActivity,
   }) : activity = activity ?? Activity.empty;
 
-  factory ActivityState.fromJson(Map<String, dynamic> json) =>
-      _$ActivityStateFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ActivityStateToJson(this);
+  // factory ActivityState.fromJson(Map<String, dynamic> json) =>
+  //     _$ActivityStateFromJson(json);
+  //
+  // Map<String, dynamic> toJson() => _$ActivityStateToJson(this);
 
   ActivityState copyWith({
-    ActivityStatus? status,
-    Activity? activity,
-    List<Activity>? activityList,
-    Activity? lastDeletedActivity,
+    ActivityStatus Function()? status,
+    Activity? Function()? activity,
+    List<Activity> Function()? activityList,
+    Activity? Function()? lastDeletedActivity,
   }) {
     return ActivityState(
-        status: status ?? this.status,
-        activity: activity ?? this.activity,
-        activityList: activityList ?? this.activityList,
-        lastDeletedActivity: lastDeletedActivity ?? this.lastDeletedActivity);
+      status: status != null ? status() : this.status,
+      activityList: activityList != null ? activityList() : this.activityList,
+      activity: activity != null ? activity() : this.activity,
+      lastDeletedActivity: lastDeletedActivity != null
+          ? lastDeletedActivity()
+          : this.lastDeletedActivity,
+    );
   }
 
   @override

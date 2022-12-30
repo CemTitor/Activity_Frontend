@@ -2,21 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'activity.g.dart';
 
-class ActivityList {
-  final List<Activity> activities;
-
-  ActivityList({
-    required this.activities,
-  });
-
-  factory ActivityList.fromJson(List<dynamic> parsedJson) {
-    List<Activity> activityList =
-        parsedJson.map((i) => Activity.fromJson(i)).toList();
-
-    return new ActivityList(activities: activityList);
-  }
-}
-
 @JsonSerializable()
 class Activity {
   String? id;
@@ -80,4 +65,20 @@ class Activity {
     city: '',
     venue: '',
   );
+}
+
+class ActivityList {
+  final List<Activity> activities;
+
+  ActivityList({
+    required this.activities,
+  });
+
+  factory ActivityList.fromJson(List<dynamic> parsedJson) {
+    List<Activity> activityList = parsedJson
+        .map((activityJson) => Activity.fromJson(activityJson))
+        .toList();
+
+    return ActivityList(activities: activityList);
+  }
 }

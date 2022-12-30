@@ -13,6 +13,7 @@ class UpdateActivityState extends Equatable {
   const UpdateActivityState({
     this.status = UpdateActivityStatus.initial,
     this.initialActivity,
+    this.id = '',
     this.title = '',
     this.description = '',
     this.category = '',
@@ -22,6 +23,7 @@ class UpdateActivityState extends Equatable {
 
   final UpdateActivityStatus status;
   final Activity? initialActivity;
+  final String id;
   final String title;
   final String description;
   final String category;
@@ -33,6 +35,7 @@ class UpdateActivityState extends Equatable {
   UpdateActivityState copyWith({
     UpdateActivityStatus? status,
     Activity? initialActivity,
+    String? id,
     String? title,
     String? description,
     String? category,
@@ -42,6 +45,7 @@ class UpdateActivityState extends Equatable {
     return UpdateActivityState(
       status: status ?? this.status,
       initialActivity: initialActivity ?? this.initialActivity,
+      id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       category: category ?? this.category,
@@ -51,6 +55,14 @@ class UpdateActivityState extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [status, initialActivity, title, description, category, city, venue];
+  List<Object?> get props => [
+        status,
+        initialActivity,
+        id,
+        title,
+        description,
+        category,
+        city,
+        venue,
+      ];
 }

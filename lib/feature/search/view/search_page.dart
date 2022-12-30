@@ -43,10 +43,6 @@ class _SearchPageState extends State<SearchPage> {
           IconButton(
             icon: const Icon(Icons.search, semanticLabel: 'Submit'),
             onPressed: () => Navigator.of(context).pop(_text),
-            // onPressed: () {
-            //   Navigator.of(context)
-            //       .pushReplacement(WeatherPage.route(), result: _text);
-            // },
           )
         ],
       ),

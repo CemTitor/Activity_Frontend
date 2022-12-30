@@ -14,11 +14,9 @@ class WeatherState extends Equatable {
   final WeatherStatus status;
   final Weather weather;
   final List<Weather> weatherList;
-  // final DegreeUnits degreeUnits;
 
   WeatherState({
     this.status = WeatherStatus.initial,
-    // this.degreeUnits = DegreeUnits.celsius,
     this.weatherList = const <Weather>[],
     Weather? weather,
   }) : weather = weather ?? Weather.empty;
@@ -30,13 +28,11 @@ class WeatherState extends Equatable {
 
   WeatherState copyWith({
     WeatherStatus? status,
-    // DegreeUnits? degreeUnits,
     Weather? weather,
     List<Weather>? weatherList,
   }) {
     return WeatherState(
       status: status ?? this.status,
-      // degreeUnits: degreeUnits ?? this.degreeUnits,
       weather: weather ?? this.weather,
       weatherList: weatherList ?? this.weatherList,
     );

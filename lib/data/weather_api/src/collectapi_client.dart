@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
 
@@ -20,8 +19,7 @@ class CollectApiClient {
 
   final http.Client _httpClient;
 
-  /// Finds a [Weather] `/weather/getWeather/?data.lang=(lang)&data.city=(city)`.
-  Future<Weather> getWeather(String query) async {
+  Future<Weather> getTodayWeatherForecastByCity(String query) async {
     final weatherRequest = Uri.https(
       _baseUrlWeather,
       '/weather/getWeather',
@@ -48,7 +46,7 @@ class CollectApiClient {
     return Weather.fromJson(results.first as Map<String, dynamic>);
   }
 
-  Future<List<Weather>> getWeatherList(String cityName) async {
+  Future<List<Weather>> getWeeklyWeatherForecastByCity(String cityName) async {
     final weatherRequest = Uri.https(
       _baseUrlWeather,
       '/weather/getWeather',

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
-import 'package:weather_frontend/feature/activity/widgets/activity_list_tile.dart';
 import 'package:weather_frontend/feature/activity/activity.dart';
 import 'package:weather_frontend/feature/update_activity/view/update_activity_page.dart';
 import 'package:weather_frontend/feature/weather/view/weather_page.dart';
@@ -12,17 +11,10 @@ class ActivityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        //   MultiBlocProvider(providers: [
-        //   BlocProvider(
-        //     create: (_) => ActivityCubit(context.read<ActivityRepository>()),
-        //     child: const ActivityView(),
-        //   ),
-        //   BlocProvider(
-        //       create: (_) => WeatherCubit(context.read<WeatherRepository>())),
-        // ], child: const ActivityView());
-        BlocProvider(
-      create: (_) => ActivityCubit(context.read<ActivityRepository>()),
+    return BlocProvider(
+      create: (_) => ActivityBloc(
+        activityRepository: context.read<ActivityRepository>(),
+      )..add(const ActivitySubscriptionRequested()),
       child: const ActivityView(),
     );
   }
@@ -42,11 +34,17 @@ class _ActivityViewState extends State<ActivityView> {
       appBar: AppBar(
         title: const Text('Activity API'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.get_app),
+          CupertinoButton.filled(
             onPressed: () async {
-              await context.read<ActivityCubit>().fetchActivityList();
+              await context.read<ActivityBloc>()
+                ..add(ActivityListFetched());
             },
+            child: Row(
+              children: [
+                Icon(Icons.refresh),
+                Text('Refresh Activity List'),
+              ],
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.cloud),
@@ -56,8 +54,8 @@ class _ActivityViewState extends State<ActivityView> {
       ),
       body: MultiBlocListener(
         listeners: [
-          ///The first is a BlocListener that listens for errors
-          BlocListener<ActivityCubit, ActivityState>(
+          ///First BlocListener that listens for errors
+          BlocListener<ActivityBloc, ActivityState>(
             ///The listener will only be called when listenWhen returns true
             listenWhen: (previous, current) =>
                 previous.status != current.status,
@@ -75,7 +73,7 @@ class _ActivityViewState extends State<ActivityView> {
           ),
 
           ///Second BlocListener that listens for deletions
-          BlocListener<ActivityCubit, ActivityState>(
+          BlocListener<ActivityBloc, ActivityState>(
             listenWhen: (previous, current) =>
                 previous.lastDeletedActivity != current.lastDeletedActivity &&
                 current.lastDeletedActivity != null,
@@ -93,7 +91,7 @@ class _ActivityViewState extends State<ActivityView> {
             },
           ),
         ],
-        child: BlocBuilder<ActivityCubit, ActivityState>(
+        child: BlocBuilder<ActivityBloc, ActivityState>(
           builder: (context, state) {
             if (state.activityList.isEmpty) {
               if (state.status == ActivityStatus.loading) {
@@ -104,32 +102,13 @@ class _ActivityViewState extends State<ActivityView> {
                 return Center(
                   child: Text(
                     'No activity found. 🙈',
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.headline2,
+                    textAlign: TextAlign.center,
                   ),
                 );
               }
             }
-            return CupertinoScrollbar(
-              child: ListView.builder(
-                  itemCount: state.activityList.length,
-                  itemBuilder: (context, index) {
-                    return ActivityListTile(
-                      activity: state.activityList[index],
-                      onDismissed: (_) {
-                        context.read<ActivityCubit>().removeActivity(
-                              state.activityList[index].id!,
-                            );
-                      },
-                      onTap: () {
-                        Navigator.of(context).push(
-                          UpdateActivityPage.route(
-                            initialActivity: state.activityList[index],
-                          ),
-                        );
-                      },
-                    );
-                  }),
-            );
+            return ActivityList(state.activityList);
           },
         ),
       ),

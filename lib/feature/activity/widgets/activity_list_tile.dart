@@ -17,9 +17,10 @@ class ActivityListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final captionColor = theme.textTheme.caption?.color;
 
     return Dismissible(
+      // key: UniqueKey(),
+      //
       key: Key('todoListTile_dismissible_${activity.id}'),
       onDismissed: onDismissed,
       direction: DismissDirection.endToStart,

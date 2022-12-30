@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/domain/weather_repository/src/weather_repository.dart';
+import 'package:weather_frontend/domain/weather_repository/weather_repository.dart';
 import 'package:weather_frontend/feature/search/search.dart';
 import 'package:weather_frontend/feature/weather/weather.dart';
 
@@ -64,7 +64,6 @@ class _WeatherViewState extends State<WeatherView> {
           final city = await Navigator.of(context).push(SearchPage.route());
           if (!mounted) return;
           await context.read<WeatherCubit>().fetchWeatherList(city!);
-          // await context.read<WeatherCubit>().fetchWeather(city);
         },
       ),
     );

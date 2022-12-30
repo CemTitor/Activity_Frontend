@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/domain/activity_repository/src/activity_repository.dart';
-import 'package:weather_frontend/domain/weather_repository/src/weather_repository.dart';
+import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
+import 'package:weather_frontend/domain/weather_repository/weather_repository.dart';
 import 'package:weather_frontend/feature/activity/view/activity_page.dart';
 import 'package:weather_frontend/feature/activity/activity.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-///Our app.dart widget will handle building the WeatherPage view we previously created and use BlocProvider to inject our ThemeCubit which handles theme data.
-class WeatherApp extends StatelessWidget {
+class ActivityApp extends StatelessWidget {
   final WeatherRepository _weatherRepository;
   final ActivityRepository _activityRepository;
 
-  const WeatherApp(
+  const ActivityApp(
       {super.key,
       required WeatherRepository weatherRepository,
       required ActivityRepository activityRepository})
@@ -29,13 +28,13 @@ class WeatherApp extends StatelessWidget {
           value: _activityRepository,
         ),
       ],
-      child: WeatherAppView(),
+      child: ActivityAppView(),
     );
   }
 }
 
-class WeatherAppView extends StatelessWidget {
-  const WeatherAppView({super.key});
+class ActivityAppView extends StatelessWidget {
+  const ActivityAppView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,6 @@ class WeatherAppView extends StatelessWidget {
               .headline6,
         ),
       ),
-      // home: const WeatherPage(),
       home: const ActivityPage(),
     );
   }
