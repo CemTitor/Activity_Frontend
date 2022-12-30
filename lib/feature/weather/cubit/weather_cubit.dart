@@ -25,12 +25,6 @@ class WeatherCubit extends Cubit<WeatherState> {
         await _weatherRepository.getWeather(city),
       );
 
-      // final weather = await _weatherRepository.getWeather(city);
-      // final units = state.degreeUnits;
-      // final value = units.isFahrenheit
-      //     ? weather.degree.value.toFahrenheit()
-      //     : weather.degree.value;
-
       emit(
         state.copyWith(
           status: WeatherStatus.success,
@@ -58,64 +52,10 @@ class WeatherCubit extends Cubit<WeatherState> {
     }
   }
 
-  Future<void> refreshWeather() async {
-    if (!state.status.isSuccess) return;
-    if (state.weather == Weather.empty) return;
-    try {
-      // final weather = Weather.fromRepository(
-      //   await _weatherRepository.getWeather(state.weather.location),
-      // );
-      // final units = state.degreeUnits;
-      // final value = units.isFahrenheit
-      //     ? weather.degree.value.toFahrenheit()
-      //     : weather.degree.value;
-
-      emit(
-        state.copyWith(
-          status: WeatherStatus.success,
-          // degreeUnits: units,
-          // weather: weather.copyWith(degree: Degree(value: value)),
-        ),
-      );
-    } on Exception {
-      emit(state);
-    }
-  }
-
-  // void toggleUnits() {
-  //   final units = state.degreeUnits.isFahrenheit
-  //       ? DegreeUnits.celsius
-  //       : DegreeUnits.fahrenheit;
-  //
-  //   if (!state.status.isSuccess) {
-  //     emit(state.copyWith(degreeUnits: units));
-  //     return;
-  //   }
-  //
-  //   final weather = state.weather;
-  //   if (weather != Weather.empty) {
-  //     // final temperature = weather.degree;
-  //     // final value = units.isCelsius
-  //     //     ? temperature.value.toCelsius()
-  //     //     : temperature.value.toFahrenheit();
-  //     emit(
-  //       state.copyWith(
-  //         degreeUnits: units,
-  //         // weather: weather.copyWith(degree: Degree(value: value)),
-  //       ),
-  //     );
-  //   }
-  // }
-
   @override
   WeatherState fromJson(Map<String, dynamic> json) =>
       WeatherState.fromJson(json);
 
   @override
   Map<String, dynamic> toJson(WeatherState state) => state.toJson();
-}
-
-extension on double {
-  double toFahrenheit() => (this * 9 / 5) + 32;
-  double toCelsius() => (this - 32) * 5 / 9;
 }

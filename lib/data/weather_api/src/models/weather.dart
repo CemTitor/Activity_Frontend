@@ -38,36 +38,26 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'weather.g.dart';
 
-enum WeatherCondition {
-  clear,
-  rainy,
-  cloudy,
-  snowy,
-  unknown,
-}
-
 @JsonSerializable()
 class Weather {
-  // final int id;
   final String date;
   final String day;
   final String icon;
   final String description;
   final String status;
-  // final String degree;
+  final String degree;
   final String min;
   final String max;
   final String night;
   final String humidity;
 
   const Weather({
-    // required this.id,
     required this.date,
     required this.day,
     required this.icon,
     required this.description,
     required this.status,
-    // required this.degree,
+    required this.degree,
     required this.min,
     required this.max,
     required this.night,
@@ -76,7 +66,7 @@ class Weather {
 
   factory Weather.fromJson(Map<String, dynamic> json) =>
       _$WeatherFromJson(json);
-  // Map<String, dynamic> toJson() => _$WeatherToJson(this);
+  Map<String, dynamic> toJson() => _$WeatherToJson(this);
 
   List<Object?> get props => [
         date,
@@ -84,7 +74,7 @@ class Weather {
         icon,
         description,
         status,
-        // degree,
+        degree,
         min,
         max,
         night,
@@ -92,26 +82,24 @@ class Weather {
       ];
 
   Weather copyWith({
-    // int? id,
     String? date,
     String? day,
     String? icon,
     String? description,
     String? status,
-    // String? degree,
+    String? degree,
     String? min,
     String? max,
     String? night,
     String? humidity,
   }) {
     return Weather(
-      // id: id ?? this.id,
       date: date ?? this.date,
       day: day ?? this.day,
       icon: icon ?? this.icon,
       description: description ?? this.description,
       status: status ?? this.status,
-      // degree: degree ?? this.degree,
+      degree: degree ?? this.degree,
       min: min ?? this.min,
       max: max ?? this.max,
       night: night ?? this.night,
@@ -120,13 +108,12 @@ class Weather {
   }
 
   static final empty = Weather(
-    // id: 0,
     date: '',
     day: '',
     icon: '',
     description: '',
     status: '',
-    // degree: '',
+    degree: '',
     min: '',
     max: '',
     night: '',
@@ -135,13 +122,12 @@ class Weather {
 
   factory Weather.fromRepository(Weather movie) {
     return Weather(
-      // id: movie.id,
       date: movie.date,
       day: movie.day,
       icon: movie.icon,
       description: movie.description,
       status: movie.status,
-      // degree: movie.degree,
+      degree: movie.degree,
       min: movie.min,
       max: movie.max,
       night: movie.night,

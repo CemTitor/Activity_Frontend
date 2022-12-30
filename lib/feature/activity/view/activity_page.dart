@@ -1,22 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_frontend/data/activity_api/activity_api.dart';
 import 'package:weather_frontend/domain/activity_repository/activity_repository.dart';
-import 'package:weather_frontend/domain/weather_repository/src/weather_repository.dart';
 import 'package:weather_frontend/feature/activity/widgets/activity_list_tile.dart';
-import 'package:weather_frontend/feature/search/search.dart';
-import 'package:weather_frontend/feature/settings/settings.dart';
 import 'package:weather_frontend/feature/activity/activity.dart';
 import 'package:weather_frontend/feature/update_activity/view/update_activity_page.dart';
-import 'package:weather_frontend/feature/weather/cubit/weather_cubit.dart';
+import 'package:weather_frontend/feature/weather/view/weather_page.dart';
 
 class ActivityPage extends StatelessWidget {
   const ActivityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return
+        //   MultiBlocProvider(providers: [
+        //   BlocProvider(
+        //     create: (_) => ActivityCubit(context.read<ActivityRepository>()),
+        //     child: const ActivityView(),
+        //   ),
+        //   BlocProvider(
+        //       create: (_) => WeatherCubit(context.read<WeatherRepository>())),
+        // ], child: const ActivityView());
+        BlocProvider(
       create: (_) => ActivityCubit(context.read<ActivityRepository>()),
       child: const ActivityView(),
     );
@@ -35,23 +40,17 @@ class _ActivityViewState extends State<ActivityView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Activity'),
+        title: const Text('Activity API'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.of(context).push<void>(
-                SettingsPage.route(
-                  context.read<WeatherCubit>(),
-                ),
-              );
-            },
-          ),
           IconButton(
             icon: const Icon(Icons.get_app),
             onPressed: () async {
               await context.read<ActivityCubit>().fetchActivityList();
             },
+          ),
+          IconButton(
+            icon: const Icon(Icons.cloud),
+            onPressed: () => Navigator.of(context).push(WeatherPage.route()),
           ),
         ],
       ),
@@ -140,9 +139,5 @@ class _ActivityViewState extends State<ActivityView> {
         child: const Icon(Icons.add),
       ),
     );
-  }
-
-  void _onListPressed() async {
-    await context.read<ActivityCubit>().fetchActivityList();
   }
 }

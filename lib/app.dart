@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_frontend/domain/activity_repository/src/activity_repository.dart';
 import 'package:weather_frontend/domain/weather_repository/src/weather_repository.dart';
 import 'package:weather_frontend/feature/activity/view/activity_page.dart';
-import 'package:weather_frontend/feature/theme/theme.dart';
-import 'package:weather_frontend/feature/weather/weather.dart';
 import 'package:weather_frontend/feature/activity/activity.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,10 +29,7 @@ class WeatherApp extends StatelessWidget {
           value: _activityRepository,
         ),
       ],
-      child: BlocProvider(
-        create: (_) => ThemeCubit(),
-        child: const WeatherAppView(),
-      ),
+      child: WeatherAppView(),
     );
   }
 }
@@ -45,22 +40,17 @@ class WeatherAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return BlocBuilder<ThemeCubit, Color>(
-      builder: (context, color) {
-        return MaterialApp(
-          theme: ThemeData(
-            primaryColor: color,
-            textTheme: GoogleFonts.rajdhaniTextTheme(),
-            appBarTheme: AppBarTheme(
-              titleTextStyle: GoogleFonts.rajdhaniTextTheme(textTheme)
-                  .apply(bodyColor: Colors.white)
-                  .headline6,
-            ),
-          ),
-          // home: const WeatherPage(),
-          home: const ActivityPage(),
-        );
-      },
+    return MaterialApp(
+      theme: ThemeData(
+        textTheme: GoogleFonts.rajdhaniTextTheme(),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: GoogleFonts.rajdhaniTextTheme(textTheme)
+              .apply(bodyColor: Colors.white)
+              .headline6,
+        ),
+      ),
+      // home: const WeatherPage(),
+      home: const ActivityPage(),
     );
   }
 }

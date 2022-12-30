@@ -12,20 +12,20 @@ class ActivityCubit extends Cubit<ActivityState> {
 
   ActivityCubit(this._activityRepository) : super(ActivityState());
 
-  Future<void> onSubscriptionRequested() async {
-    emit(state.copyWith(status: () => ActivityStatus.loading));
-
-    await emit.forEach<List<Activity>>(
-      _activityRepository.getActivityList(),
-      onData: (activityList) => state.copyWith(
-        status: () => ActivityStatus.success,
-        activityList: () => activityList,
-      ),
-      onError: (_, __) => state.copyWith(
-        status: () => ActivityStatus.failure,
-      ),
-    );
-  }
+  // Future<void> onSubscriptionRequested() async {
+  //   emit(state.copyWith(status: () => ActivityStatus.loading));
+  //
+  //   await emit.forEach<List<Activity>>(
+  //     _activityRepository.getActivityList(),
+  //     onData: (activityList) => state.copyWith(
+  //       status: () => ActivityStatus.success,
+  //       activityList: () => activityList,
+  //     ),
+  //     onError: (_, __) => state.copyWith(
+  //       status: () => ActivityStatus.failure,
+  //     ),
+  //   );
+  // }
 
   Future<void> fetchActivityList() async {
     emit(state.copyWith(status: ActivityStatus.loading));
@@ -48,10 +48,11 @@ class ActivityCubit extends Cubit<ActivityState> {
     try {
       await _activityRepository.removeActivity(id);
 
-      emit(state.copyWith(lastDeletedActivity: state.activity, activityList
+      emit(state.copyWith(
+        lastDeletedActivity: state.activity,
 
-          //todo: add activiyList attribute
-          ));
+        //todo: add activiyList attribute
+      ));
     } on Exception {
       emit(state.copyWith(status: ActivityStatus.failure));
     }

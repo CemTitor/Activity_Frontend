@@ -35,17 +35,18 @@ class _SearchPageState extends State<SearchPage> {
                 controller: _textController,
                 decoration: const InputDecoration(
                   labelText: 'City',
-                  hintText: 'Chicago',
+                  hintText: 'Bursa',
                 ),
               ),
             ),
           ),
           IconButton(
-            key: const Key('searchPage_search_iconButton'),
             icon: const Icon(Icons.search, semanticLabel: 'Submit'),
-
-            ///The search page allows users to enter the name of their desired city and provides the search result to the previous route via
             onPressed: () => Navigator.of(context).pop(_text),
+            // onPressed: () {
+            //   Navigator.of(context)
+            //       .pushReplacement(WeatherPage.route(), result: _text);
+            // },
           )
         ],
       ),

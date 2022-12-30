@@ -17,6 +17,10 @@ ActivityState _$ActivityStateFromJson(Map<String, dynamic> json) =>
       activity: json['activity'] == null
           ? null
           : Activity.fromJson(json['activity'] as Map<String, dynamic>),
+      lastDeletedActivity: json['lastDeletedActivity'] == null
+          ? null
+          : Activity.fromJson(
+              json['lastDeletedActivity'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ActivityStateToJson(ActivityState instance) =>
@@ -24,6 +28,7 @@ Map<String, dynamic> _$ActivityStateToJson(ActivityState instance) =>
       'status': _$ActivityStatusEnumMap[instance.status]!,
       'activity': instance.activity,
       'activityList': instance.activityList,
+      'lastDeletedActivity': instance.lastDeletedActivity,
     };
 
 const _$ActivityStatusEnumMap = {

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:weather_frontend/data/weather_api/collectapi_weather.dart';
+
 /// Exception thrown when locationSearch fails.
 class WeatherRequestFailure implements Exception {}
 
@@ -47,7 +48,6 @@ class CollectApiClient {
     return Weather.fromJson(results.first as Map<String, dynamic>);
   }
 
-  ///Fetches List of Movies by Name
   Future<List<Weather>> getWeatherList(String cityName) async {
     final weatherRequest = Uri.https(
       _baseUrlWeather,
