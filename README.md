@@ -5,9 +5,10 @@ Application where I can perform CRUD operations from my own API that I coded and
 ## Screenshots for Activiy Part
 
 
-<img src=![image](https://user-images.githubusercontent.com/43721794/210139361-e4a9bb4e-1b4e-4c36-976f-0dc21b869d14.png) width="425"/> <img src="image2.png" width="425"/> 
+<img src="[image1.png](https://user-images.githubusercontent.com/43721794/210139361-e4a9bb4e-1b4e-4c36-976f-0dc21b869d14.png)" width="425"/> <img src="image2.png" width="425"/> 
 
 
+![image](https://user-images.githubusercontent.com/43721794/210139361-e4a9bb4e-1b4e-4c36-976f-0dc21b869d14.png)
 
 ![image](https://user-images.githubusercontent.com/43721794/210139411-96b69ce7-6593-47eb-847a-a460fa7e24dc.png)
 
