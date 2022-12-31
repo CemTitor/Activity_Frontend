@@ -10,4 +10,4 @@ Application where I can perform CRUD operations from my own API that I coded and
 
 ## Screenshots for Weather Part
 
-<img src="https://user-images.githubusercontent.com/43721794/210139478-9c0fcfbc-89dd-4b92-9556-ebcc70cd9742.png" width="425"/>  <img src="https://user-images.githubusercontent.com/43721794/210139498-b7bacfc1-21e3-462a-8912-c599317cab94.png" width="425"/>  <img src="https://user-images.githubusercontent.com/43721794/210139515-70527036-c196-4e16-b34c-9c1ae64fddaa.png" width="425"/> 
+<img src="https://user-images.githubusercontent.com/43721794/210139478-9c0fcfbc-89dd-4b92-9556-ebcc70cd9742.png" width="300"/>  <img src="https://user-images.githubusercontent.com/43721794/210139498-b7bacfc1-21e3-462a-8912-c599317cab94.png" width="300"/>  <img src="https://user-images.githubusercontent.com/43721794/210139515-70527036-c196-4e16-b34c-9c1ae64fddaa.png" width="300"/> 
