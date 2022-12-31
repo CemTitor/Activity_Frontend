@@ -22,5 +22,3 @@ Application where I can perform CRUD operations from my own API that I coded and
 ![image](https://user-images.githubusercontent.com/43721794/210139498-b7bacfc1-21e3-462a-8912-c599317cab94.png)
 
 ![image](https://user-images.githubusercontent.com/43721794/210139515-70527036-c196-4e16-b34c-9c1ae64fddaa.png)
-
-![image](https://user-images.githubusercontent.com/43721794/210139550-3b5a739f-49bf-4ca0-8788-b492169e12af.png)
