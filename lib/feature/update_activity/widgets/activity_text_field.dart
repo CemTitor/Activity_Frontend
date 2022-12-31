@@ -30,10 +30,10 @@ class _TitleField extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<UpdateActivityBloc>().state;
     final hintText = state.initialActivity?.title ?? '';
-
     return TextFormField(
       key: const Key('editActivityView_title_textFormField'),
       initialValue: state.title,
+      style: Theme.of(context).textTheme.headline5,
       decoration: InputDecoration(
         enabled: !state.status.isLoadingOrSuccess,
         labelText: 'Title',
@@ -63,6 +63,7 @@ class _DescriptionField extends StatelessWidget {
     return TextFormField(
       key: const Key('editActivityView_description_textFormField'),
       initialValue: state.description,
+      style: Theme.of(context).textTheme.headline5,
       decoration: InputDecoration(
         enabled: !state.status.isLoadingOrSuccess,
         labelText: 'Description',
@@ -88,6 +89,7 @@ class _CategoryField extends StatelessWidget {
     return TextFormField(
       key: const Key('editActivityView_category_textFormField'),
       initialValue: state.category,
+      style: Theme.of(context).textTheme.headline5,
       decoration: InputDecoration(
         enabled: !state.status.isLoadingOrSuccess,
         labelText: 'Category',
@@ -113,6 +115,7 @@ class _CityField extends StatelessWidget {
     return TextFormField(
       key: const Key('editActivityView_city_textFormField'),
       initialValue: state.city,
+      style: Theme.of(context).textTheme.headline5,
       decoration: InputDecoration(
         enabled: !state.status.isLoadingOrSuccess,
         labelText: 'City',
@@ -142,6 +145,7 @@ class _VenueField extends StatelessWidget {
     return TextFormField(
       key: const Key('editActivityView_venue_textFormField'),
       initialValue: state.venue,
+      style: Theme.of(context).textTheme.headline5,
       decoration: InputDecoration(
         enabled: !state.status.isLoadingOrSuccess,
         labelText: 'Venue',
