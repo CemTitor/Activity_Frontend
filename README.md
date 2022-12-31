@@ -5,6 +5,7 @@ Application where I can perform CRUD operations from my own API that I coded and
 
 ## Screen Recording
 
+<img src="https://user-images.githubusercontent.com/43721794/210139959-31d8a518-d5ff-42fb-b388-e51b2215fd84.gif" width="300"/>
 ![activity_crud](https://user-images.githubusercontent.com/43721794/210139959-31d8a518-d5ff-42fb-b388-e51b2215fd84.gif)
 ![Alt text](https://github.com/CemTitor/Activity_Frontend/blob/master/activity_crud.webm)
 ![Alt text](https://github.com/CemTitor/Activity_Frontend/blob/master/activity_crud.gif)
