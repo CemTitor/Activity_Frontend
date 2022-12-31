@@ -2,6 +2,13 @@
 
 Application where I can perform CRUD operations from my own API that I coded and also ColllectAPI . I used Layered architecture, Bloc pattern and RxDart for realtime data flow.
 
+
+## Screen Recording
+
+![Alt text](https://github.com/CemTitor/Activity_Frontend/blob/master/activity_crud.webm)
+
+
+
 ## Screenshots for Activiy Part
 
 
