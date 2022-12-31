@@ -25,7 +25,7 @@ class ActivityRepository {
     await _activityApiClient.putActivity(activity);
   }
 
-  Future<void> removeActivity(String id) async {
-    await _activityApiClient.deleteActivity(id);
+  Future<void> removeActivity(String id, String activityTitle) async {
+    await _activityApiClient.deleteActivity(id, activityTitle);
   }
 }

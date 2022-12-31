@@ -22,7 +22,7 @@ class WeatherListPopulated extends StatelessWidget {
                 style: theme.textTheme.headline4,
               ),
               subtitle: Text(
-                '${weatherList[weatherIndex].degree}',
+                '${weatherList[weatherIndex].degree}°C ',
                 style: theme.textTheme.headline2,
               ),
               leading: Image.network(

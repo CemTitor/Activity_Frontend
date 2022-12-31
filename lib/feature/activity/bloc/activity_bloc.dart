@@ -5,7 +5,6 @@ import 'package:activity_frontend/data/activity_api/activity_api.dart';
 import 'package:activity_frontend/domain/activity_repository/activity_repository.dart';
 
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 part 'activity_event.dart';
 part 'activity_state.dart';
@@ -16,8 +15,8 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
   })  : _activityRepository = activityRepository,
         super(ActivityState()) {
     on<ActivitySubscriptionRequested>(onSubscriptionRequested);
-    on<ActivityRemoved>(_onremoveActivity);
-    on<ActivityListFetched>(_onfetchActivityList);
+    on<ActivityRemoved>(_onRemoveActivity);
+    on<ActivityListFetched>(_onFetchActivityList);
   }
   final ActivityRepository _activityRepository;
 
@@ -39,21 +38,24 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
     );
   }
 
-  Future<void> _onremoveActivity(
+  Future<void> _onRemoveActivity(
     ActivityRemoved event,
     Emitter<ActivityState> emit,
   ) async {
     emit(state.copyWith(
       lastDeletedActivity: () => event.activity,
+
+      ///I am giving activityList in here because If I dont, there is instant error in the UI
       activityList: () => state.activityList
           .where((activity) => activity.id != event.activity.id)
           .toList(),
     ));
 
-    await _activityRepository.removeActivity(event.activity.id!);
+    await _activityRepository.removeActivity(
+        event.activity.id!, event.activity.title!);
   }
 
-  Future<void> _onfetchActivityList(
+  Future<void> _onFetchActivityList(
     ActivityListFetched event,
     Emitter<ActivityState> emit,
   ) async {

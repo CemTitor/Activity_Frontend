@@ -27,7 +27,6 @@ class ActivityApiClient {
     final activityResponse = await _httpClient.get(activityRequest);
     print('activityResponse: ${activityResponse.statusCode}');
     print('activityResponse: ${activityResponse.body}');
-    print('activityResponse: ${activityResponse.headers}');
     if (activityResponse.statusCode != 200) {
       throw ActivityRequestFailure();
     }
@@ -55,7 +54,6 @@ class ActivityApiClient {
     final activityResponse = await _httpClient.get(activityRequest);
     print('activityResponse: ${activityResponse.statusCode}');
     print('activityResponse: ${activityResponse.body}');
-    print('activityResponse: ${activityResponse.headers}');
     if (activityResponse.statusCode != 200) {
       throw ActivityRequestFailure();
     }
@@ -89,7 +87,6 @@ class ActivityApiClient {
     print('activityRequest: ${activityRequest}');
     print('activityResponse: ${activityResponse.statusCode}');
     print('activityResponse: ${activityResponse.body}');
-    print('activityResponse: ${activityResponse.headers}');
     if (activityResponse.statusCode != 200) {
       throw ActivityRequestFailure();
     }
@@ -97,9 +94,10 @@ class ActivityApiClient {
 
     // final activities = [..._activityStreamController.value];
     // activities.add(activity);
-    //
     // _activityStreamController.add(activities);
 
+    //todo:actually, I should not call init() method here. But I am doing this because I am creating Activity "ID" in the backend. So, I need to get the list from backend again.
+    _init();
     return Activity.fromJson(activityJson);
   }
 
@@ -122,17 +120,17 @@ class ActivityApiClient {
     print('activityRequest: ${activityRequest}');
     print('activityResponse: ${activityResponse.statusCode}');
     print('activityResponse: ${activityResponse.body}');
-    print('activityResponse: ${activityResponse.headers}');
     if (activityResponse.statusCode != 200) {
       throw ActivityRequestFailure();
     }
     final activityJson = jsonDecode(activityResponse.body);
+    _init();
 
     return Activity.fromJson(activityJson);
   }
 
   ///Delete Activity
-  Future<Activity> deleteActivity(String id) async {
+  Future<Activity> deleteActivity(String id, String activityTitle) async {
     final activityRequest = Uri.http(
       localhost,
       '/Activity/Delete/$id',
@@ -147,14 +145,16 @@ class ActivityApiClient {
     }
     final activityJson = await jsonDecode(activityResponse.body);
 
-    // final activities = await [..._activityStreamController.value];
-    // final todoIndex = await activities.indexWhere((t) => t.id == id);
-    // if (todoIndex == -1) {
+    // final activities = [..._activityStreamController.value];
+    // final activityIndex =
+    //     activities.indexWhere((activity) => activity.title == activityTitle);
+    // if (activityIndex == -1) {
     //   throw ActivityNotFoundFailure();
     // } else {
-    //   await activities.removeAt(todoIndex);
+    //   activities.removeAt(activityIndex);
     //   _activityStreamController.add(activities);
     // }
+    _init();
 
     return Activity.fromJson(activityJson);
   }

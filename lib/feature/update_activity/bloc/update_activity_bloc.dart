@@ -75,8 +75,19 @@ class UpdateActivityBloc
     Emitter<UpdateActivityState> emit,
   ) async {
     emit(state.copyWith(status: UpdateActivityStatus.loading));
-    final activity = (state.initialActivity ?? Activity(title: '')).copyWith(
+    // final activity = (state.initialActivity ?? Activity(title: '')).copyWith(
+    //   id: state.id,
+    //   title: state.title,
+    //   description: state.description,
+    //   category: state.category,
+    //   city: state.city,
+    //   venue: state.venue,
+    // );
+    final activity = Activity(
       id: state.id,
+
+      ///Backend creating id for activity object.
+      // id: UniqueKey().toString(),
       title: state.title,
       description: state.description,
       category: state.category,

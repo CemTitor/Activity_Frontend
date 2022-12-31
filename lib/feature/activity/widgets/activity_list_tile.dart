@@ -19,9 +19,8 @@ class ActivityListTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dismissible(
-      // key: UniqueKey(),
-      //
-      key: Key('todoListTile_dismissible_${activity.id}'),
+      key: UniqueKey(),
+      // key: Key('todoListTile_dismissible_${activity.id}'),
       onDismissed: onDismissed,
       direction: DismissDirection.endToStart,
       background: Container(
@@ -39,11 +38,13 @@ class ActivityListTile extends StatelessWidget {
           activity.title!,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.titleLarge,
         ),
         subtitle: Text(
           activity.description!,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.bodyLarge,
         ),
         trailing: onTap == null ? null : const Icon(Icons.chevron_right),
       ),

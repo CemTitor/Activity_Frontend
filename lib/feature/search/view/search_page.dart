@@ -26,25 +26,34 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('City Search')),
-      body: Row(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(30),
               child: TextField(
                 controller: _textController,
+                style: const TextStyle(fontSize: 40),
                 decoration: const InputDecoration(
                   labelText: 'City',
+                  labelStyle: TextStyle(fontSize: 40),
+                  hintStyle: TextStyle(fontSize: 40),
                   hintText: 'Bursa',
                 ),
               ),
             ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.search, semanticLabel: 'Submit'),
-            onPressed: () => Navigator.of(context).pop(_text),
-          )
-        ],
+            IconButton(
+              icon: const Icon(
+                Icons.search,
+                semanticLabel: 'Submit',
+                color: Colors.blue,
+                size: 50,
+              ),
+              onPressed: () => Navigator.of(context).pop(_text),
+            )
+          ],
+        ),
       ),
     );
   }
